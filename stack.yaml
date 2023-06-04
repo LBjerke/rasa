@@ -2,11 +2,11 @@ flags: {}
 resolver: lts-18.28
 extra-package-dbs: []
 
-# nix:
-#   enable: true
-#   packages:
-#     - libcxx
-#     - icu
+  #nix:
+  #   enable: true
+  #  packages:
+  #   - libcxx
+  #   - icu
 
 packages:
 - ./rasa
@@ -26,9 +26,9 @@ extra-deps:
 
 # Uncomment the following if you'd like to use a locally installed version
 # of icu4c INSTEAD of relying on nix.
-extra-lib-dirs:
-- /usr/local/opt/icu4c/lib
-extra-include-dirs:
-- /usr/local/opt/icu4c/include
+#extra-lib-dirs:
+#- /usr/local/opt/icu4c/lib
+#extra-include-dirs:
+#- /usr/local/opt/icu4c/include
 
-pvp-bounds: both
+  #pvp-bounds: both

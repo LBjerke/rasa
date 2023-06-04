@@ -62,7 +62,7 @@ library
                        Rasa.Internal.Utility
 
   ghc-options:         -Wall
-  build-depends:       base >= 4.9 && < 5
+  build-depends:       base 
                      , eve >= 0.1.9.0
                      , async
                      , bifunctors
