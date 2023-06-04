@@ -14,7 +14,7 @@
   inputs.stacklock2nix.url = "github:cdepillabout/stacklock2nix/main";
 
   # This is a flake reference to Nixpkgs.
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.05";
 
   outputs = {
     self,
@@ -53,13 +53,8 @@
         # Any additional Haskell package overrides you may want to add.
         additionalHaskellPkgSetOverrides = hfinal: hprev: {
           # The servant-cassava.cabal file is malformed on GitHub:
-          unordered-containers =
-            final.haskell.lib.compose.overrideCabal
-            {
-              editedCabalFile = null;
-              revision = null;
-            }
-            hprev.unordered-containers;
+          unordered-containers = final.haskell.lib.compose.dontCheck hprev.unordered-containers;
+
           # https://github.com/haskell-servant/servant-cassava/pull/29
         };
 
