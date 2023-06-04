@@ -63,7 +63,7 @@ library
 
   ghc-options:         -Wall
   build-depends:       base 
-                     , eve >= 0.1.9.0
+                     , eve
                      , async
                      , bifunctors
                      , profunctors

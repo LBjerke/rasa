@@ -24,9 +24,9 @@ packages:
 
 # Uncomment the following if you'd like to use a locally installed version
 # of icu4c INSTEAD of relying on nix.
-#extra-lib-dirs:
-#- /usr/local/opt/icu4c/lib
-#extra-include-dirs:
-#- /usr/local/opt/icu4c/include
+extra-lib-dirs:
+- /usr/local/opt/icu4c/lib
+extra-include-dirs:
+- /usr/local/opt/icu4c/include
 
 pvp-bounds: both
