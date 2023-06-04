@@ -53,6 +53,13 @@
         # Any additional Haskell package overrides you may want to add.
         additionalHaskellPkgSetOverrides = hfinal: hprev: {
           # The servant-cassava.cabal file is malformed on GitHub:
+          unordered-containers =
+            final.haskell.lib.compose.overrideCabal
+            {
+              editedCabalFile = null;
+              revision = null;
+            }
+            hprev.unordered-containers;
           # https://github.com/haskell-servant/servant-cassava/pull/29
         };
 
