@@ -19,10 +19,8 @@ packages:
 - ./rasa-ext-vim
 - ./rasa-example-config
 - ./text-lens
-# - ../eve
+- ./eve
 
-extra-deps:
-- eve-0.1.9.0
 
 # Uncomment the following if you'd like to use a locally installed version
 # of icu4c INSTEAD of relying on nix.

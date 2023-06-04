@@ -11,6 +11,7 @@ packages:
  ./rasa-ext-vim
  ./rasa-example-config
  ./text-lens
+ ./eve
 
 -- uncomment the fragment below if you installed icu4c manually or see
 --  https://github.com/haskell/hackage-server#installing-icu
