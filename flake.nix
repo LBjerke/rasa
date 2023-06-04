@@ -14,7 +14,7 @@
   inputs.stacklock2nix.url = "github:cdepillabout/stacklock2nix/main";
 
   # This is a flake reference to Nixpkgs.
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
 
   outputs = {
     self,
@@ -93,7 +93,7 @@
       };
 
       # One of our local packages.
-      rasa-example-config = final.rasa.pkgSet.rasa-example-config;
+      rasa-example-config = final.rasa.pkgSet.rasa;
 
       # You can also easily create a development shell for hacking on your local
       # packages with `cabal`.
