@@ -11,7 +11,7 @@
   # You may also want to lock stacklock2nix to a specific release:
   #
   # inputs.stacklock2nix.url = "github:cdepillabout/stacklock2nix/v1.5.0";
-  inputs.stacklock2nix.url = "github:cdepillabout/stacklock2nix/main";
+  inputs.stacklock2nix.url = "github:cdepillabout/stacklock2nix/v3.0.0";
 
   # This is a flake reference to Nixpkgs.
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
@@ -46,13 +46,15 @@
       rasa = final.stacklock2nix {
         stackYaml = ./stack.yaml;
         cabal2nixArgsOverrides = _: {
-          "unordered-containers" = ver: {nothunks = null;};
+          "unordered-containers" = ver: {
+            nothunks = false;
+          };
           "splitmix" = ver: {testu01 = null;};
         };
 
         # The Haskell package set to use as a base.  You should change this
         # based on the compiler version from the resolver in your stack.yaml.
-        baseHaskellPkgSet = final.haskell.packages.ghc8107;
+        baseHaskellPkgSet = final.haskell.packages.ghc924;
 
         # Any additional Haskell package overrides you may want to add.
         additionalHaskellPkgSetOverrides = hfinal: hprev: {
