@@ -45,19 +45,19 @@
       # stacklock2nix.
       rasa = final.stacklock2nix {
         stackYaml = ./stack.yaml;
-        cabal2nixArgsOverrides = args:
-          args
-          // {
-            "unordered-containers" = ver: "0.2.14.0" {nothunks = false;};
-          };
+        cabal2nixArgsOverrides = _: {
+          "unordered-containers" = ver: {nothunks = null;};
+          "splitmix" = ver: {testu01 = null;};
+        };
 
         # The Haskell package set to use as a base.  You should change this
         # based on the compiler version from the resolver in your stack.yaml.
-        baseHaskellPkgSet = final.haskell.packages.ghc810;
+        baseHaskellPkgSet = final.haskell.packages.ghc8107;
 
         # Any additional Haskell package overrides you may want to add.
         additionalHaskellPkgSetOverrides = hfinal: hprev: {
           # https://github.com/haskell-servant/servant-cassava/pull/29
+          unordered-containers = final.haskell.lib.compose.dontCheck hprev.unordered-containers;
         };
 
         # Additional packages that should be available for development.
