@@ -48,26 +48,11 @@
 
         # The Haskell package set to use as a base.  You should change this
         # based on the compiler version from the resolver in your stack.yaml.
-        baseHaskellPkgSet = final.haskell.packages.ghc8107;
+        baseHaskellPkgSet = final.haskell.packages.ghc810;
 
         # Any additional Haskell package overrides you may want to add.
         additionalHaskellPkgSetOverrides = hfinal: hprev: {
           # https://github.com/haskell-servant/servant-cassava/pull/29
-          unordered-containers =
-            final.haskell.lib.compose.overrideCabal
-            {
-              editedCabalFile = null;
-              revision = "0.2.14.0";
-            }
-            hprev.unordered-containers;
-
-          splitmix =
-            final.haskell.lib.compose.overrideCabal
-            {
-              editedCabalFile = null;
-              revision = null;
-            }
-            hprev.splitmix;
         };
 
         # Additional packages that should be available for development.
@@ -90,6 +75,17 @@
           # versions your project depends on.
           #stacklockHaskellPkgSet.some-haskell-lib
         ];
+        all-cabal-hashes = final.fetchFromGitHub {
+          owner = "commercialhaskell";
+          repo = "all-cabal-hashes";
+          rev = "9ab160f48cb535719783bc43c0fbf33e6d52fa99";
+          sha256 = "sha256-Hz/xaCoxe4cJBH3h/KIfjzsrEyD915YEVEK8HFR7nO4=";
+        };
+        cabal2nixArgsOverrides = args:
+          args
+          // {
+            "unordered-containers" = ver: {nothunks = null;};
+          };
 
         # When creating your own Haskell package set from the stacklock2nix
         # output, you may need to specify a newer all-cabal-hashes.
@@ -102,12 +98,6 @@
         # resolver, then it is usually not necessary to override
         # `all-cabal-hashes`.
         #
-        all-cabal-hashes = final.fetchFromGitHub {
-          owner = "commercialhaskell";
-          repo = "all-cabal-hashes";
-          rev = "9ab160f48cb535719783bc43c0fbf33e6d52fa99";
-          sha256 = "sha256-Hz/xaCoxe4cJBH3h/KIfjzsrEyD915YEVEK8HFR7nO4=";
-        };
         # If you are using a very recent Stackage resolver and an old Nixpkgs,
         # it is almost always necessary to override `all-cabal-hashes`.
       };
