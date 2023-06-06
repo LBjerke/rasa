@@ -45,6 +45,11 @@
       # stacklock2nix.
       rasa = final.stacklock2nix {
         stackYaml = ./stack.yaml;
+        cabal2nixArgsOverrides = args:
+          args
+          // {
+            "unordered-containers" = ver: "0.2.14.0" {nothunks = false;};
+          };
 
         # The Haskell package set to use as a base.  You should change this
         # based on the compiler version from the resolver in your stack.yaml.
@@ -75,17 +80,6 @@
           # versions your project depends on.
           #stacklockHaskellPkgSet.some-haskell-lib
         ];
-        all-cabal-hashes = final.fetchFromGitHub {
-          owner = "commercialhaskell";
-          repo = "all-cabal-hashes";
-          rev = "9ab160f48cb535719783bc43c0fbf33e6d52fa99";
-          sha256 = "sha256-Hz/xaCoxe4cJBH3h/KIfjzsrEyD915YEVEK8HFR7nO4=";
-        };
-        cabal2nixArgsOverrides = args:
-          args
-          // {
-            "unordered-containers" = ver: {nothunks = null;};
-          };
 
         # When creating your own Haskell package set from the stacklock2nix
         # output, you may need to specify a newer all-cabal-hashes.
